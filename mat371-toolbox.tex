@@ -580,4 +580,486 @@ Let $f$ be differentiable on $(a, b)$.
 \item If $f$ attains a minimum value at some point $c \in (a, b)$, then $f'(c) = 0$.
 \end{enumerate}
 
+\pagebreak
+
+\textbf{Appendix: Theorems to Memorize}
+
+\hrulefill
+
+\underline{Nested Interval Property (NIP)}
+
+Let $I_n = [a_n, b_n]$ and suppose for every $n \in \NN, I_{n + 1} \subseteq {I_n}$. Then $\bigcap_{n = 1}^{\infty} I_n \ne \emptyset$.
+
+\dotfill
+
+High-Level Overview of the Proof:
+\begin{enumerate}
+\item Create a set containing the left endpoints of every interval, then use its properties to show that by the AoC, a sup exists.
+
+\item Show that the sup is the element that all the intervals contain, making their intersection nonempty.
+\end{enumerate}
+
+\dotfill
+
+\begin{proof}
+$ $
+
+Let $A = \set{a_n \mid n \in \NN}$.
+
+Since $a_1 \in A, A \ne \emptyset$.
+
+Since for every $n \in \NN, a_n \le b_1, b_1$ is an upper bound for $A$.
+
+By the AoC, $\alpha = \sup A$ exists.
+
+- - - - - - - - - -
+
+Since $\alpha$ is an upper bound for $A$, for every $n \in \NN, a_n \le \alpha$.
+
+Since $\alpha$ is the least upper bound for $A$ and for every $n \in \NN, b_n$ is an upper bound for $A, \alpha \le b_n$.
+
+Thus, for every $n \in \NN, a_n \le \alpha \le b_n$, and so $\alpha \in I_n$ and $\alpha \in \bigcap_{n = 1}^{\infty} I_n$.
+
+Therefore, $\bigcap_{n = 1}^{\infty} I_n \ne \emptyset$.
+\end{proof}
+
+\pagebreak
+
+\underline{Archimedean Property (ArP)}
+
+For every $x \in \RR$, there exists $n \in \NN$ such that $n > x$.
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+\begin{enumerate}
+\item By contradiction, assume the negation of the statement and argue that $x$ is an upper bound for $\NN$, and so by the AoC, a sup exists for $\NN$.
+
+\item Show that there exists an element in $\NN$ that is greater than the sup (using the sup lemma with $\eps = 1$), which is a contradiction.
+\end{enumerate}
+
+\dotfill
+
+\begin{proof}
+$ $
+
+By contradiction.
+
+Suppose there exists $x \in \RR$ such that for every $n \in \NN, n \le x$.
+
+Then $x$ is an upper bound for $\NN$.
+
+Clearly, $\NN \ne \emptyset$.
+
+By the AoC, $\alpha = \sup \NN$ exists.
+
+- - - - - - - - - -
+
+Then there exists $n \in \NN$ such that $\alpha - 1 < n$.
+
+Then $\alpha < n + 1$.
+
+Since $n \in \NN, n + 1 \in \NN$.
+
+This contradicts the fact that $\alpha$ is an upper bound for $\NN$.
+\end{proof}
+
+\pagebreak
+
+\underline{Monotone Convergence Theorem (MCT) for increasing sequences}
+
+Let $(a_n)$ be an increasing sequence that is bounded from above. Then $(a_n)$ converges.
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+\begin{enumerate}
+\item Create a set containing every element of the sequence, and use its properties to show that by the AoC, it has a sup.
+
+\item Show that the limit of the sequence is that sup (starting with the sup lemma).
+\end{enumerate}
+
+\dotfill
+
+\begin{proof}
+$ $
+
+Let $A = \set{a_n \mid n \in \NN}$.
+
+Since $a_1 \in A, A \ne \emptyset$.
+
+Since $(a_n)$ is bounded from above, $A$ has an upper bound.
+
+By the AoC, $\alpha = \sup A$ exists.
+
+- - - - - - - - - -
+
+Let $\eps > 0$ be arbitrary.
+
+Since $\alpha = \sup A$, there exists $n_0 \in \NN$ such that $\alpha - \eps < a_{n_0}$.
+
+For $n \ge n_0$, since $a_{n_0} \le a_n$ and $a_n \le \alpha, -\eps < a_{n_0} - \alpha \le a_n - \alpha \le 0 < \eps$.
+
+Thus, $\abs{a_n - \alpha} < \eps$, and so $(a_n)$ converges to $\alpha$.
+\end{proof}
+
+\pagebreak
+
+\underline{Bolzano-Weierstrass Theorem (BW)}
+
+Every bounded sequence has a convergent subsequence.
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+\begin{enumerate}
+\item First prove the lemma that every sequence contains a monotone subsequence.
+\begin{enumerate}
+\item Define what a peak is, then show that for the case of a sequence having infinitely many peaks, it has a decreasing subsequence made up of all the peaks.
+
+\item Show that for the case of a sequence having finitely many peaks, it has an increasing subsequence made up of all the points after the last peak (use induction to show that $a_{n_k} < a_{n_{k + 1}}$).
+\end{enumerate}
+
+\item Use the above lemma to show that a bounded sequence has a subsequence that is also bounded, and so by the MCT, that subsequence converges.
+\end{enumerate}
+
+\dotfill
+
+\underline{Lemma}: Every sequence contains a monotone subsequence.
+\begin{proof}
+$ $
+
+Let $(a_n)$ be a sequence.
+
+Then $(a_m)$ is called a \underline{peak} if for every $l \ge m, a_l \le a_m$.
+
+\begin{itemize}
+\item \underline{Case 1}: There are infinitely many peaks in $(a_n)$.
+
+Let $n_k$ be the index of the $k^{\text{th}}$ peak.
+
+Since $n_k < n_{k + 1}, a_{n_k} \ge a_{n_{k + 1}}$.
+
+Thus, $(a_{n_k})$ is decreasing.
+
+- - - - - - - - - -
+
+\item \underline{Case 2}: There are finitely many peaks in $(a_n)$.
+
+Let $m$ be the index of the last peak ($m = 0$ if there are no peaks).
+
+Let $n_1 = m + 1$.
+
+Since $a_{n_1}$ is not a peak, there exists $n_2 > n_1$ such that $a_{n_1} < a_{n_2}$.
+
+Suppose $a_{n_1}, \dots, a_{n_k}$ non-peaks have been chosen.
+
+Since $a_{n_k}$ is not a peak, there exists $n_{k + 1} > n_k$ such that $a_{n_k} < a_{n_{k + 1}}$.
+
+Thus, by induction, $(a_{n_k})$ is increasing.
+\end{itemize}
+
+Therefore, every sequence contains a monotone subsequence.
+\end{proof}
+
+- - - - - - - - - -
+
+\underline{Proof of Bolzano-Weierstrass Theorem}
+
+\begin{proof}
+$ $
+
+Let $(a_n)$ be a bounded sequence.
+
+By the above lemma, $(a_n)$ contains a monotone subsequence $(a_{n_k})$.
+
+Since $(a_n)$ is bounded, $(a_{n_k})$ is also bounded.
+
+Therefore, by the MCT, $a_{n_k}$ converges.
+\end{proof}
+
+\pagebreak
+
+\underline{Cauchy Criterion}
+
+If a sequence is Cauchy, then it converges.
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+\begin{enumerate}
+\item First prove the lemma that every Cauchy sequence is bounded.
+\begin{enumerate}
+\item Use the definition of the Cauchy sequence (with $\eps = 1$), and focus on the $n \ge n_0$ part to show that $\abs{a_n}$ is bounded by $1 + \abs{a_{n_0}}$.
+
+\item Show that the entire sequence is bounded by the max of all the absolute values of sequence values before $a_{n_0}$ and the bound at and after $a_{n_0}$ ($1 + \abs{a_{n_0}}$).
+\end {enumerate}
+
+\item Use the lemma above and BW to show that a Cauchy sequence contains a convergent subsequence.
+
+\item Show that the limit of that subsequence is the limit of the Cauchy sequence, meaning that the Cauchy sequence converges.
+\begin{enumerate}
+\item Use the definitions of convergence for the subsequence and a Cauchy sequence with $\frac{\eps}{2}$ for the $\eps$-values to setup inequalities to be used later.
+
+\item Choose an index to be the further out of the subsequence and Cauchy sequence convergence points ($k_0$ and $n_0$), and transform the inequalities to use that index.
+
+\item Show that the Cauchy sequence converges to the value to which the subsequence converges, using the definition of convergence with the inequalities.
+\end{enumerate}
+\end{enumerate}
+
+\dotfill
+
+\underline{Lemma}: Every Cauchy sequence is bounded.
+
+\begin{proof}
+$ $
+
+Let $(a_n)$ be a Cauchy sequence.
+
+Then there exists $n_0 \in \NN$ such that for every $n, m \ge n_0, \abs{a_n - a_m} < 1$.
+
+In particular, for every $n \ge n_0, \abs{a_n - a_{n_0}} < 1$.
+
+Then for every $n \ge n_0, \abs{a_n} = \abs{a_n - a_{n_0} + a_{n_0}} \le \abs{a_n - a_{n_0}} + \abs{a_{n_0}} < 1 + \abs{a_{n_0}}$.
+
+- - - - - - - - - -
+
+Let $M = \max \set{\abs{a_1}, \abs{a_2}, \dots, \abs{a_{n_0 - 1}}, 1 + \abs{a_{n_0}}}$.
+
+Then for every $n \in \NN, \abs{a_n} \le M$.
+
+Therefore, $(a_n)$ is bounded.
+\end{proof}
+
+- - - - - - - - - -
+
+\underline{Proof of the Cauchy Criterion}
+
+\begin{proof}
+$ $
+
+Let $(a_n)$ be a Cauchy sequence.
+
+By the lemma above, $(a_n)$ is bounded.
+
+By Bolzano-Weierstrass, $(a_n)$ contains a convergent subsequence $(a_{n_k})$.
+
+- - - - - - - - - -
+
+Let $a = \lim a_{n_k}$.
+
+Let $\eps > 0$ be arbitrary.
+
+Since $\lim a_{n_k} = a$, there exists $k_0 \in \NN$ such that for every $k \ge k_0, \abs{a_{n_k} - a} < \frac{\eps}{2}$.
+
+Since $(a_n)$ is a Cauchy sequence, there exists $n_0 \in \NN$ such that for every
+\\
+$n, m \ge n_0, \abs{a_n - a_m} < \frac{\eps}{2}$.
+
+- - - - - - - - - -
+
+Let $l = \max \set{k_0, n_0}$.
+
+Then for $n \ge n_0, \abs{a_{n_l} - a} < \frac{\eps}{2}$ and $\abs{a_n - a_{n_l}} < \frac{\eps}{2}$.
+
+- - - - - - - - - -
+
+Then for $n \ge n_0, \abs{a_n - a} = \abs{a_n - a_{n_l} + a_{n_l} - a} \le \abs{a_n - a_{n_l}} + \abs{a_{n_l} - a}
+\\
+< \frac{\eps}{2} + \frac{\eps}{2} = \eps$.
+
+Therefore, $\lim a_n = a$, and so $(a_n)$ converges.
+\end{proof}
+
+\pagebreak
+
+\underline{Extreme Value Theorem}
+
+Let $f : [a, b] \rightarrow \RR$ be continuous. Then there exist $\alpha, \beta \in [a, b]$ such that for all $x \in [a, b], f(\alpha) \le f(x) \le f(\beta)$.
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+\begin{enumerate}
+\item First show that $f$ is bounded on $[a, b]$.
+\begin{enumerate}
+\item By contradiction, we suppose $f$ is unbounded on the interval by constructing a sequence in $[a, b]$ whose absolute valued function output values are at or above their respective index values, which is possible because this assumption allows the function values to grow without bound on the closed interval.
+
+\item Use BW version 2 to show that a subsequence of that sequence converges to a value in $[a, b]$, and since $f$ is continuous, the subsequence's function output values also converge.
+
+\item This contradicts the assumption that the $f$ was unbounded, as the absolute valued function output values of the subsequence also grow without bound under that original assumption, and thus shouldn't converge.
+\end{enumerate}
+
+\item By the AoC, the set of function output values on $[a, b]$ has a sup that we'll show is the max of the function output values, and we'll find the input value of $f$ associated with that max value.
+
+\item Construct a sequence in $[a, b]$ using the sup lemma with the function output values of that sequence (with $\eps = \frac{1}{n}$), and bound that statement from above with the sup.
+
+\item Use BW version 2 to show that the sequence has a subsequence that converges to the input value, and converting the above statement to use the subsequence and applying the squeeze theorem shows that the function output values of the subsequence converge to the sup.
+
+\item Show that since $f$ is continuous, the function output values of the subsequence also converge to the function value at the input value, and so the function values on $[a, b]$ have the sup as an upper bound, which is the same as the function value at the input value.
+\end{enumerate}
+
+\dotfill
+
+\begin{proof}
+$ $
+
+\begin{enumerate}
+\item We will show that $f$ is bounded on $[a, b]$.
+
+By contradiction.
+
+Suppose for every $n \in \NN$, there exists $x_n \in [a, b]$ such that $\abs{f(x_n)} \ge n$. $(\ast)$
+
+- - - - - - - - - -
+
+By BW version 2, $(x_n)$ contains a convergent subsequence $(x_{n_k})$ such that $x = lim x_{n_k} \in [a, b]$.
+
+Since $f$ is continuous on $[a, b], \lim f(x_{n_k}) = f(x)$.
+
+- - - - - - - - - -
+
+This contradicts $(\ast)$, as by $(\ast), \abs{f(x_{n_k})} \ge n_k \ge k$.
+
+- - - - - - - - - -
+
+\item By the AoC, $M = \sup \set{f(x) \mid x \in [a, b]}$ exists.
+
+- - - - - - - - - -
+
+Then for every $n \in \NN$, there exists $x_n \in [a, b]$ such that $M - \frac{1}{n} < f(x_n)$.
+
+Thus, $M - \frac{1}{n} < f(x_n) \le M$.
+
+- - - - - - - - - -
+
+By BW version 2, $(x_n)$ contains a convergent subsequence $(x_{n_k})$ such that $\beta = \lim x_{n_k} \in [a, b]$.
+
+Then $M - \frac{1}{k} \le M - \frac{1}{n_k} \le f(x_{n_k}) \le M$.
+
+Thus, by the squeeze theorem, $\lim f(x_{n_k}) = M$.
+
+- - - - - - - - - -
+
+At the same time, since $f$ is continuous on $[a, b], \lim f(x_{n_k}) = f(\beta)$.
+
+Thus, there exists $\beta \in [a, b]$ such that $f(\beta) = M$.
+
+Therefore, for every $x \in [a, b], f(x) \le M = f(\beta)$.
+\end{enumerate}
+\end{proof}
+
+\pagebreak
+
+\underline{Theorem on continuous functions on a closed interval being uniformly continuous}
+
+Let $f : [a, b] \rightarrow \RR$ be continuous. Then $f$ is uniformly continuous on $[a, b]$.
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+\begin{enumerate}
+\item By contradiction, suppose $f$ is not uniformly continuous on $[a, b]$, and use the theorem for a function failing to be uniformly continuous.
+
+\item Use BW version 2 and the triangle inequality to show that a subsequence of one of the above sequences converges to the same value as a subsequence of the other.
+
+\item Use the definition of continuity and the triangle inequality to show that the absolute value of the difference of function output values between the two subsequences converges to zero, contradicting the assumption that they should converge to a positive real number.
+\end{enumerate}
+
+\dotfill
+
+\begin{proof}
+$ $
+
+By contradiction.
+
+Suppose there exist $\eps_0 > 0$ and $(x_n), (y_n)$ contained in $[a, b]$ such that
+\\
+$\lim \abs{x_n - y_n} = 0$, but $\abs{f(x_n) - f(y_n)} \ge \eps_0$ for every $n \in \NN$. $(\ast)$
+
+- - - - - - - - - -
+
+By BW version 2, there exists a subsequence $(x_{n_k})$ of $(x_n)$ that converges and such that $x = \lim x_{n_k} \in [a, b]$.
+
+We have $\abs{y_{n_k} - x} \le \abs{y_{n_k} - x_{n_k}} + \abs{x_{n_k} - x} \rightarrow 0$.
+
+Thus, $\lim y_{n_k} = x$.
+
+- - - - - - - - - -
+
+Since $f$ is continuous on $[a, b], \lim f(x_{n_k}) = f(x) = \lim f(y_{n_k})$, and so
+\\
+$\abs{f(x_{n_k}) - f(y_{n_k})} \le \abs{f(x_{n_k}) - f(x)} + \abs{f(y_{n_k}) - f(x)} \rightarrow 0$, contradicting $(\ast)$.
+\end{proof}
+
+\pagebreak
+
+\underline{Bolzano's Theorem}
+
+Let $f: [a, b] \rightarrow \RR$ be continuous. Suppose $f(a) < 0$ and $f(b) > 0$. Then there is $c \in (a, b)$ such that $f(c) = 0$.
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+\begin{enumerate}
+\item Use induction to create a sequence of closed intervals, each of which uses the previous interval's midpoint to be one of the new interval's endpoints. This is chosen as such to keep each interval's left endpoint negative and its right endpoint non-negative.
+
+\item Use the NIP to show that both the left and right endpoints of the intervals converge to a value.
+
+\item Use the definition of continuity and the order of limits theorem to show that the function output value at the above determined value is zero.
+\end{enumerate}
+
+\dotfill
+
+\begin{proof}
+$ $
+
+Let $a_1 = a, b_1 = b$, and $I_n = [a_1, b_1]$.
+
+Suppose a sequence of closed intervals $I_1, \dots, I_n$ with $I_j = [a_j, b_j]$ have been constructed such that $I_1 \supseteq I_2 \supseteq \dots \supseteq I_n, f(a_j) < 0$, and $f(b_j) > 0$.
+
+Let $z = \frac{a_n + b_n}{2}$.
+
+\begin{enumerate}
+\item If $f(z) < 0$, then $a_{n + 1} = z$ and $b_{n + 1} = b_n$.
+
+\item If $f(z) \ge 0$, then $a_{n + 1} = a_n$ and $b_{n + 1} = z$.
+\end{enumerate}
+
+Let $I_{n + 1} = [a_{n + 1}, b_{n + 1}]$.
+
+Then $I_{n + 1}$ is a closed interval, $I_{n + 1} \subseteq I_n, f(a_{n + 1}) < 0$, and $f(b_{n + 1}) \ge 0$.
+
+Thus, by induction we have a nested sequence of closed intervals $I_1 \supseteq I_2 \supseteq \dots$.
+
+- - - - - - - - - -
+
+By the NIP, $\bigcap_{n = 1}^{\infty} I_n \ne \emptyset$.
+
+Let $c \in \bigcap_{n = 1}^{\infty} I_n$.
+
+Then for every $n \in \NN, a_n \le c \le b_n$.
+
+Since $\lim \text{length}(I_n) = 0, \lim a_n = c = \lim b_n$.
+
+- - - - - - - - - -
+
+Since $f$ is continuous on $[a, b], \lim f(a_n) = f(c) = f(b_n)$.
+
+Since $f(a_n) < 0$ for every $n \in \NN$, by the order of limits theorem, $f(c) \le 0$.
+
+Since $f(b_n) \ge 0$ for every $n \in \NN, f(c) \ge 0$.
+
+Therefore, $f(c) = 0$ and $c \in (a, b)$.
+\end{proof}
+
+\pagebreak
+
 \end{document}
