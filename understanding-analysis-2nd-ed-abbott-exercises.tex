@@ -1,0 +1,466 @@
+%% Thanks to Bennet Goeckner for giving me his TeX template, which this is based on. 
+%% These percent symbols tell the compiler to ignore the remainder of a given line.
+%% We use them to write comments that will not appear in the finalized output.
+
+%% The following tells the compiler which type of document we're making.
+%% There are many options. ``Article'' is probably fine for our class.
+\documentclass[12pt]{article}
+
+%% After declaring the documentclass, we load some packages which give us 
+%% some built-in commands and more functionality. 
+%% The following is a list of packages that this file might use.
+%% If a command you're using isn't working, try Googling it -- you might need to add a specific package.
+%% I have included the standard ones that I like to load.
+\usepackage[table]{xcolor}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{mdframed}
+\usepackage{multicol}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage[margin = .8in]{geometry}
+\geometry{letterpaper}
+\linespread{1.2}
+\usepackage{cancel}
+
+%% One of the nicest things about LaTeX is you can create custom macros. If  there is a long-ish expression that you will write often, it is nice to give it a shorter command.
+%% For our common number systems.
+\newcommand{\RR}{\mathbb{R}} %% The blackboard-bold R that you have seen used for real numbers is typeset by $\mathbb{R}$. This macro means that $\RR$ will yield the same result, and is much shorter to type.
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}} 
+\newcommand{\QQ}{\mathbb{Q}}
+
+%% Your macros can even accept arguments. 
+\newcommand\set[1]{\left\lbrace #1 \right\rbrace} %% In mathmode, if you write \set{STUFF}, then this will output {STUFF}, i.e. STUFF inside of a set
+\newcommand\abs[1]{\left| #1 \right|} %% This will do the same but with vertical bars. I.e., \abs{STUFF} gives |STUFF|
+\newcommand\parens[1]{\left( #1 \right)} %% Similar. \parens{STUFF} gives (STUFF)
+\newcommand\brac[1]{\left[ #1 \right]} %% Similar. \brac{STUFF} gives [STUFF]
+\newcommand\sol[1]{\begin{mdframed}
+\emph{Solution.} #1
+\end{mdframed}}
+\newcommand\solproof[1]{\begin{mdframed}
+\begin{proof} #1
+\end{proof}
+\end{mdframed}}
+
+\newcommand\augmat[2]{\left[ \begin{array}{#1} #2 \end{array} \right]}
+\newcommand\matopsinterchange[2]{#1 \longleftrightarrow #2}
+\newcommand\matopsreplace[2]{#1 \xrightarrow{} #2}
+\newcommand\matopsarrow[1]{\xrightarrow[\substack{#1}]{}}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\newcommand{\Pc}{\mathcal{P}}
+
+\newcommand{\eps}{\varepsilon}
+
+\newcommand\ceil[1]{\left\lceil #1 \right\rceil}
+\newcommand\floor[1]{\left\lfloor #1 \right\rfloor}
+
+\graphicspath{ {./images/} }
+
+%% A few more important commands:
+
+%% You should start every proof with \begin{proof} and end it with \end{proof}.  
+%%
+%% Code inside single dollar signs will give in-line mathmode. I.e., $f(x) = x^2$ 
+%% Code \[ \] will give mathmode centered on its own line.
+%%
+%% Other common commands:
+%%	\begin{align*} and \end{align*} -- Good for multiline equations
+%%	\begin{align} and \end{align} -- Same as above, but it will number the equations for easy reference
+%%	\emph{italicized text here} and \textbf{bold text here} are also useful.
+%%
+%% Some very specific mathmode commands and their meanings:
+%%	x \in A -- x is an element of A
+%%	x \notin A -- x is not an element of A
+%%	A \subseteq B -- A is a subset of B
+%%	A \subsetneq B -- A is a proper subset of B
+%%	x \equiv y \pmod{n} -- x is congruent to y mod n. 
+%%	x \geq y and x \leq y -- Greater than or equal to and less than or equal to 
+%%
+%% You'll probably find lots of relevant commands in the question prompts. Also Google is your friend!
+
+\begin{document}
+
+\large
+\textbf{2.2 The Limit of a Sequence}
+
+\hrulefill
+
+\begin{enumerate}
+
+% 2.2.1
+\item
+\begin{enumerate}
+\item
+What happens if we reverse the order of the quantifiers in Definition 2.2.3?
+
+\textit{Definition:} A sequence $(x_n)$ \textit{verconges} to $x$ if \textit{there exists} an $\eps > 0$ such that \textit{for all} $N \in \NN$ is it true that $n \ge N$ implies $\abs{x_n - x} < \eps$.
+
+\begin{enumerate}
+\item Give an example of a vercongent sequence.
+
+$x_n = \frac{1}{n}$ verconges to 1.
+
+\begin{proof}
+$ $
+
+Let $\eps = 2$.
+
+Let $N \in \NN$ be arbitrary.
+
+For every $n \ge N, \abs{\frac{1}{n} - 1} = \abs{1 - \frac{1}{n}} = 1 - \frac{1}{n} \le 1 < 2 = \eps$.
+\end{proof}
+
+\item Is there an example of a vercongent sequence that is divergent?
+
+The divergent sequence $x_n = (-1)^n$ verconges to 1.
+
+\begin{proof}
+$ $
+
+Let $\eps = 3$.
+
+Let $N \in \NN$ be arbitrary.
+
+For every $n \ge N, \abs{(-1)^n - 1} \le 2 < 3 = \eps$.
+\end{proof}
+
+\item Can a sequence verconge to two different values?
+
+Yes. For example, $x_n = \frac{1}{n}$ verconges to 1 (already shown above) and also 2.
+
+\begin{proof}
+$ $
+
+Let $\eps = 2$.
+
+Let $N \in \NN$ be arbitrary.
+
+For every $n \ge N, \abs{\frac{1}{n} - 2} = \abs{2 - \frac{1}{n}} = 2 - \frac{1}{n} < 2 = \eps$.
+\end{proof}
+
+\item What exactly is being described in this strange definition?
+
+A vercongence sequence is a bounded sequence.
+\end{enumerate}
+\end{enumerate}
+
+\hrulefill
+
+% 2.2.2
+\item
+Verify, using the definition of converge of a sequence, that the following sequences converge to the proposed limit.
+\begin{enumerate}
+\item $\lim \frac{2n + 1}{5n + 4} = \frac{2}{5}$.
+
+\begin{proof}
+$ $
+
+Let $\eps > 0$ be arbitrary.
+
+By the ArP, there exists $n_0 \in \NN$ such that $\frac{1}{n_0} < \eps$.
+
+For every $n \ge n_0, \abs{\frac{2n + 1}{5n + 4} - \frac{2}{5}} = \abs{\frac{10n + 5 - 10n - 8}{5(5n + 4)}} = \abs{\frac{-3}{5(5n + 4)}} = \frac{3}{5} \cdot \frac{1}{5n + 4}
+\\
+< \frac{3}{5} \cdot \frac{1}{5n} = \frac{3}{25} \cdot \frac{1}{n} < \frac{1}{n} \le \frac{1}{n_0} < \eps$.
+\end{proof}
+
+\item $\lim \frac{2 n^2}{n^3 + 3} = 0$.
+
+\begin{proof}
+$ $
+
+Let $\eps > 0$ be arbitrary.
+
+By the ArP, there exists $n_0 \in \NN$ such that $\frac{1}{n_0} < \frac{\eps}{2}$, and so $\frac{2}{n_0} < \eps$.
+
+For every $n \ge n_0, \abs{\frac{2 n^2}{n^3 + 3} - 0} = \abs{\frac{2 n^2}{n^3 + 3}} = \frac{2 n^2}{n^3 + 3} < \frac{2 n^2}{n^3} = \frac{2}{n} \le \frac{2}{n_0} < \eps$.
+\end{proof}
+
+\item $\lim \frac{\sin (n^2)}{\sqrt[3]{n}} = 0$.
+
+\begin{proof}
+$ $
+
+Let $\eps > 0$ be arbitrary.
+
+By the ArP, there exists $n_0 \in \NN$ such that $\frac{1}{n_0} < \eps$.
+
+For every $n \ge n_0, \abs{\frac{\sin (n^2)}{\sqrt[3]{n}} - 0} = \abs{\frac{\sin (n^2)}{\sqrt[3]{n}}} \le \frac{1}{\sqrt[3]{n}} \le \frac{1}{n} \le \frac{1}{n_0} < \eps$.
+\end{proof}
+\end{enumerate}
+
+% 2.2.3
+\item Describe what we would have to demonstrate in order to disprove each of the following statements.
+\begin{enumerate}
+\item At every college in the United States, there is a student who is at least seven feet tall.
+
+Find a college in the United States in which every student is less than seven feet tall.
+
+\item For all colleges in the United States, there exists a professor who gives every student a grade of either A or B.
+
+Find a college in the United States in which every professor gives a student a grade that is not an A and is not a B.
+
+\item There exists a college in the United States where every student is at least six feet tall.
+
+Show that every college in the United States has a student that is less than six feet tall.
+\end{enumerate}
+
+% 2.2.4
+\item Give an example of each or state that the request is impossible. For any that are impossible, give a compelling argument for why that is the case.
+\begin{enumerate}
+\item A sequence with an infinite number of ones that does not converge to one.
+
+$(x_n) = ((-1)^n) = (-1, 1, -1, 1, -1, 1, \dots)$ has an infinite number of ones, but diverges.
+
+\item A sequence with an infinite number of ones that converges to a limit not equal to one.
+
+This is impossible.
+
+\begin{proof}
+$ $
+
+By contradiction.
+
+Suppose $(x_n)$ is a sequence with an infinite number of ones that converges to a limit not equal to 1.
+
+Let $(x_{n_k})$ be a subsequence of $(x_n)$ such that $n_k$ is the $k^{\text{th}}$ one in $(x_n)$.
+
+Since $x_{n_k} = 1$ for every $k \in \NN, \lim x_{n_k} = 1$.
+
+Thus, $(x_n)$ also converges to 1, but this contradicts the assumption that its limit is not equal to 1.
+\end{proof}
+
+
+\item A divergent sequence such that for every $n \in \NN$ it is possible to find $n$ consecutive ones somewhere in the sequence.
+
+$(x_n) = (0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, \dots)$
+\end{enumerate}
+
+% 2.2.5
+\item Let $[[x]]$ be the greatest integer less than or equal to $x$. For example, $[[\pi]] = 3$ and $[[3]] = 3$. For each sequence, find $\lim a_n$ and verify it with the definition of convergence.
+\begin{enumerate}
+\item $a_n = [[5/n]]$
+
+$\lim a_n = 0$
+
+\begin{proof}
+$ $
+
+Let $\eps > 0$ be arbitrary.
+
+Let $n_0 = 6$.
+
+For $n \ge n_0, \abs{\brac{\brac{\frac{5}{n}}} - 0} = \abs{\brac{\brac{\frac{5}{n}}}} = \brac{\brac{\frac{5}{n}}} = 0 < \eps$.
+\end{proof}
+
+\item $a_n = [[(12 + 4n) / 3n]]$
+
+$\lim a_n = 1$
+
+\begin{proof}
+$ $
+
+Let $\eps > 0$ be arbitrary.
+
+Let $n_0 = 7$.
+
+For $n \ge n_0, \abs{\brac{\brac{\frac{12 + 4n}{3n}}} - 1} = \abs{\brac{\brac{\frac{12 + 4n}{3n} - 1}}} = \abs{\brac{\brac{\frac{12 + 4n - 3n}{3n}}}}
+\\
+= \abs{\brac{\brac{\frac{12 + n}{3n}}}} = \brac{\brac{\frac{12 + n}{3n}}} = 0 < \eps$.
+\end{proof}
+\end{enumerate}
+
+Reflecting on these examples, comment on the statement following Definition 2.2.3 that ``the smaller the $\eps$-neighborhood, the larger $N$ may have to be.''
+
+These examples show that after a certain $n_0$ value (or $N$ value in the words of the statement), the values of the sequence are equal to the limit value, regardless of the $\eps$-value.
+
+% 2.2.6
+\item Prove Theorem 2.2.7. To get started, assume $(a_n) \rightarrow a$ and also that
+\\
+$(a_n) \rightarrow b$. Now argue $a = b$.
+
+\begin{proof}
+$ $
+
+Let $\eps > 0$ be arbitrary.
+
+Suppose $a, b \in \RR$ and $\lim a_n = a$ and $\lim a_n = b$.
+
+Then there exists $n_1 \in \NN$ such that for all $n \ge n_1, \abs{a_n - a} < \frac{\eps}{2}$.
+
+Then there exists $n_2 \in \NN$ such that for all $n \ge n_2, \abs{a_n - b} < \frac{\eps}{2}$.
+
+Let $n_0 = \max \set{n_1, n_2}$.
+
+Then for all $n \ge n_0, \abs{a - b} = \abs{a - a_n + a_n - b} \le \abs{a_n - a} + \abs{a_n - b}
+\\
+< \frac{\eps}{2} + \frac{\eps}{2} = \eps$.
+
+Thus, $a - b = 0$, and so $a = b$.
+\end{proof}
+
+% 2.2.7
+\item Here are two useful definitions:
+\begin{enumerate}
+\item A sequence $(a_n)$ is \textit{eventually} in a set $A \subseteq \RR$ if there exists an $N \in \NN$ such that $a_n \in A$ for all $n \ge N$.
+
+\item A sequence $(a_n)$ is \textit{frequently} in a set $A \subseteq \RR$ if, for every $N \in \NN$, there exists an $n \ge N$ such that $a_n \in A$.
+
+\begin{enumerate}
+\item Is the sequence $(-1)^n$ eventually or frequently in the set $\set{1}$?
+
+\begin{enumerate}
+\item
+Frequently
+
+\begin{proof}
+$ $
+
+Let $N \in \NN$ be arbitrary.
+
+If $N$ is even, then let $n = N$, and so $n$ is even.
+
+If $N$ is odd, then let $n = N + 1$, and so $n$ is even.
+
+Then $a_n = (-1)^n = 1 \in \set{1}$.
+\end{proof}
+
+\item
+Not eventually
+
+\begin{proof}
+$ $
+
+By contradiction.
+
+Suppose $a_n$ is eventually in $A$.
+
+Then there exists $N \in \NN$ such that for every $n \ge N, a_n \in A$.
+
+If $N$ is even, then let $m = N + 1$, and so $m$ is odd.
+
+If $N$ is odd, then let $m = N + 2$, and so $m$ is odd.
+
+Since $m \ge N$, then it must be that $m \in A$.
+
+However, $a_m = (-1)^m = -1 \notin A$, which is a contradiction.
+\end{proof}
+\end{enumerate}
+
+\item Which definition is stronger? Does frequently imply eventually or does eventually imply frequently?
+
+Eventually is stronger, and eventually implies frequently:
+
+\begin{proof}
+$ $
+
+Suppose $(a_n)$ is a sequence that is eventually in a set $A \subseteq \RR$.
+
+Then there exists $n_0 \in \NN$ such that for every $n \ge n_0, a_n \in A$.
+
+Let $N \in \NN$ be arbitrary.
+
+If $N \ge n_0$, let $n = N$, and so $n \ge N$.
+
+If $N < n_0$, let $n = n_0$, and so $n \ge N$.
+
+Thus, $a_n \in A$.
+
+Therefore, $(a_n)$ is a sequence that is frequently in a set $A \subseteq \RR$.
+\end{proof}
+
+\item Give an alternate rephrasing of Definition 2.2.3B using either frequently or eventually. Which is the term we want?
+
+\textbf{Definition 2.2.3B.} A sequence $(a_n)$ converges to $a$ if, given any $\eps$-neighborhood $V_{\eps} (a)$ of $a$, there exists a point in the sequence after which all the terms are in $V_{\eps} (a)$.
+
+\textbf{Alternate rephrasing.} A sequence $(a_n)$ converges to $a$ if, given any $\eps$-neighborhood $V_{\eps} (a)$ of $a$, $(a_n)$ is eventually in $V_{\eps} (a)$.
+
+\item Suppose an infinite number of terms of a sequence $(x_n)$ are equal to 2.
+
+\begin{enumerate}
+\item
+Is $(x_n)$ necessarily eventually in the interval $(1.9, 2.1)$?
+
+Not necessarily, as $x_n = (-1)^n + 1$ has terms that are oscillating between 0 and 2, and so there are an infinite number of 2s in $(x_n)$, but there is no $N \in \NN$ at and after which there are no 0s in $(x_n)$.
+
+\item
+Is it frequently in $(1.9, 2.1)$?
+
+Yes, for every $N \in \NN$, we can find an $n \ge N$ such that
+\\
+$a_n = 2 \in (1.9, 2.1) = A$.
+\end{enumerate}
+
+\end{enumerate}
+\end{enumerate}
+
+% 2.2.8
+\item For some additional practice with nested quantifiers, consider the following invented definition:
+
+Let's call a sequence $(x_n)$ \textit{zero-heavy} if there exists $M \in \NN$ such that for all $N \in \NN$ there exists $n$ satisfying $N \le n \le N + M$ where $x_n = 0$.
+\begin{enumerate}
+\item Is the sequence $\set{0, 1, 0, 1, 0, 1, \dots}$ zero heavy?
+
+Yes.
+
+\begin{proof}
+$ $
+
+Let $M = 1$.
+
+Let $N \in \NN$ be arbitrary.
+
+If $N$ is odd, then let $n = N$, and so $N \le n \le N + 1 = N + M$ and $n$ is odd and $x_n = 0$.
+
+If $N$ is even, then let $n = N + 1$, and so $N \le n \le N + 1 = N + M$ and $n$ is odd and $x_n = 0$.
+
+Therefore, $\set{0, 1, 0, 1, 0, 1, \dots}$ is zero heavy.
+\end{proof}
+
+\item If a sequence is zero-heavy does it necessarily contain an infinite number of zeros? If not, provide a counterexample.
+
+Yes.
+
+\item If a sequence contains an infinite number of zeros, is it necessarily zero-heavy? If not, provide a counterexample.
+
+No. For example:
+
+\[
+x_n =
+\begin{cases}
+	0 & \text{if } n \text{ is a perfect square} \\
+	1 & \text{otherwise} \\
+\end{cases}
+\]
+
+\begin{proof}
+$ $
+
+Let $M \in \NN$ be arbitrary.
+
+Let $k \in \NN$ be such that $k > M$.
+
+Let $N = k^2 + 1$.
+
+Then $k^2 + 1 \le N + M = k^2 + 1 + M < k^2 + k + 1 < k^2 + 2k + 1 < (k + 1)^2$.
+
+Then for every $n$ satisfying $N \le n \le N + M, x_n = 1$.
+
+Therefore, $(x_n)$ is not zero-heavy.
+\end{proof}
+
+\item Form the logical negation of the above definition. That is, complete the sentence: A sequence is \textit{not} zero-heavy if \dots.
+
+A sequence is not zero-heavy if for every $M \in \NN$, there exists $N \in \NN$ such that for every $n$ satisfying $N \le n \le N + M, x_n \ne 0$.
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
