@@ -673,7 +673,28 @@ R_n (x) = \frac{f^{(n + 1)} (c)}{(n + 1)!} (x - x_0)^{n + 1}.
 
 \hrulefill
 
-TODO
+\defword{Pointwise convergence.} For $n \in \NN$, let $f_n : A \rightarrow \RR$.
+\\
+The sequence $(f_n)$ \defword{converges pointwise} on $A$ to a function $f$ if for every
+\\
+$x \in A, (f_n (x))$ converges to $f(x)$.
+\[
+\forall_{x \in A} \forall_{\eps > 0} \exists_{n_0 \in \NN} \forall_{n \ge n_0} \abs{f_n (x) - f(x)} < \eps
+\]
+
+\hrulefill
+
+\defword{Uniform convergence.} Let $(f_n)$ be a sequence of functions $f_n : A \rightarrow \RR$.
+\\
+Then $(f_n)$ \defword{converges uniformly} on $A$ to a function $f : A \rightarrow \RR$ if
+\[
+\forall_{\eps > 0} \exists_{n_0 \in \NN} \forall_{n \ge n_0} \forall_{x \in A} \abs{f_n (x) - f(x)} < \eps.
+\]
+
+$(f_n)$ does \underline{not} converge uniformly to $f$ on $A$ if
+\[
+\exists_{\eps_0 > 0} \forall_{n_0 \in \NN} \exists_{n \ge n_0} \exists_{x \in A} \abs{f_n (x) - f(x)} \ge \eps_0.
+\]
 
 \pagebreak
 
@@ -681,7 +702,26 @@ TODO
 
 \hrulefill
 
-TODO
+\underline{Theorem}: Cauchy Criterion
+
+A sequence of functions $(f_n), f_n : A \rightarrow \RR$ converges uniformly on $A$ if and only if
+\[
+\forall_{\eps > 0} \exists_{n_0 \in \NN} \forall_{n, m \ge n_0} \forall_{x \in A} \abs{f_n (x) - f_m (x)} < \eps.
+\]
+
+\hrulefill
+
+\underline{Theorem}: Continuous Limit Theorem
+
+Let $(f_n)$ be a sequence of functions $f_n : A \rightarrow \RR$ that converge uniformly on $A$ to $f$. If each $f_n$ is continuous at $c \in A$, then so is $f$.
+
+\hrulefill
+
+\underline{Theorem}: Differentiable Limit Theorem
+
+Let $f_n \rightarrow f$ pointwise on $[a, b]$ and assume each $f_n$ is differentiable.
+\\
+If $(f_n ')$ converges uniformly on $[a, b]$ to $g$, then $f$ is differentiable and $f' = g$.
 
 \pagebreak
 
