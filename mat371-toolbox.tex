@@ -537,6 +537,10 @@ g'(c) = \lim \limits_{x \rightarrow c} \frac{g(x) - g(c)}{x - c}
 
 If $g$ exists for all points $c \in A$, then $g$ is \defword{differentiable} on $A$.
 
+\hrulefill
+
+\defword{Infinite limit.} $\lim_{x \rightarrow a} f(x) = \infty$ if for every $M > 0$, there exists $\delta > 0$ such that if $0 < \abs{x - a} < \delta$, then $f(x) > M$.
+
 \pagebreak
 
 \textbf{Chapter 5: The Derivative - Facts}
@@ -563,7 +567,7 @@ If $g$ exists for all points $c \in A$, then $g$ is \defword{differentiable} on 
 
 \underline{Theorem}: The Chain Rule
 
-Let $f : A \rightarrow B, g : B \rightarrow \RR$ satisfy $f(A) \subseteq B$. If $f$ is differentiable at $c \in A$ and $g$ is differentiable at $f(c) \subseteq B$, then $g \circ f$ is differentiable at $c$ and
+Let $f : A \rightarrow B, g : B \rightarrow \RR$ satisfy $f(A) \subseteq B$. If $f$ is differentiable at $c \in A$ and $g$ is differentiable at $f(c) \in B$, then $g \circ f$ is differentiable at $c$ and
 \[
 (g \circ f)'(c) = g'(f(c)) f'(c)
 \]
@@ -579,6 +583,121 @@ Let $f$ be differentiable on $(a, b)$.
 
 \item If $f$ attains a minimum value at some point $c \in (a, b)$, then $f'(c) = 0$.
 \end{enumerate}
+
+\hrulefill
+
+\underline{Theorem}: Darboux's Theorem
+
+If $f$ is differentiable on an interval $[a, b]$ and if $\alpha$ satisfies $f'(a) < \alpha < f'(b)$
+\\
+(or $f'(b) < \alpha < f'(a)$), then there is a point $c \in (a, b)$ such that $f'(c) = \alpha$.
+
+\hrulefill
+
+\underline{Theorem}: Rolle's Theorem
+
+Let $f : [a, b] \rightarrow \RR$ be continuous on $[a, b]$ and differentiable on $(a, b)$. If $f(a) = f(b)$, then there is a point $c \in (a, b)$ such that $f'(c) = 0$.
+
+\pagebreak
+
+\underline{Theorem}: Mean Value Theorem
+
+If $f : [a, b] \rightarrow \RR$ is continuous on $[a, b]$ and differentiable on $(a, b)$, then there is $c \in (a, b)$ such that
+\[
+f'(c) = \frac{f(b) - f(a)}{b - a}.
+\]
+
+\hrulefill
+
+\underline{Corollary}: Let $A$ be a non-degenerate interval ($A = [a, b], a < b$).
+\\
+If $g : A \rightarrow \RR$ is differentiable and satisfies $g'(x) = 0$ for all $x \in A$, then $g(x) = k$ for some $k \in \RR$.
+
+\hrulefill
+
+\underline{Corollary}: Let $A$ be a non-degenerate interval.
+\\
+If $f, g : A \rightarrow \RR$ are differentiable on $A$ and satisfy $f'(x) = g'(x)$ for every $x \in A$, then $f(x) = g(x) + k$ for some $k \in \RR$.
+
+\hrulefill
+
+\underline{Theorem}: Generalized Mean Value Theorem
+
+If $f, g$ are continuous on $[a, b]$ and differentiable on $(a, b)$, then there exists $c \in (a, b)$ such that
+\[
+(f(b) - f(a)) g'(c) = (g(b) - g(a)) f'(c).
+\]
+
+In particular, if $g'(x) \ne 0$ for every $x \in (a, b)$, then
+\[
+\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}.
+\]
+
+\hrulefill
+
+\underline{Theorem}: L'Hospital's Rule ($\frac{0}{0}$ case)
+
+Let $f, g : [a, b] \rightarrow \RR$ be continuous on $[a, b]$ and differentiable on $(a, b)$.
+\\
+If $f(a) = g(a) = 0$ and $g'(x) \ne 0$ for all $x \ne a$, then
+\[
+\lim \limits_{x \rightarrow a} \frac{f'(x)}{g'(x)} = L \Rightarrow \lim \limits_{x \rightarrow a} \frac{f(x)}{g(x)} = L.
+\]
+
+\hrulefill
+
+\underline{Theorem}: L'Hospital's Rule ($\frac{\infty}{\infty}$ case)
+
+Let $f$ and $g$ be differentiable on $(a, b)$. Suppose $g'(x) \ne 0$ for all $x \in (a, b)$. If $\lim_{x \rightarrow a} g(x) = \infty$, then
+\[
+\lim \limits_{x \rightarrow a} \frac{f'(x)}{g'(x)} = L \Rightarrow \lim \limits_{x \rightarrow a} \frac{f(x)}{g(x)} = L.
+\]
+
+\pagebreak
+
+\underline{Theorem}: Taylor's Theorem
+
+Let $f : [a, b] \rightarrow \RR$. Suppose for some $n \in \NN, f^{(n)} (x)$ is continuous on $[a, b]$ and $f^{(n + 1)} (x)$ exists on $(a, b)$. Then for $x, x_0 \in [a, b]$, there is $c$ between $x, x_0$ such that
+
+\[
+f(x) = f(x_0) + f'(x_0)(x - x_0) + \cdots + \frac{f^{(n)} (x_0)}{n!} (x - x_0)^n + R_n (x)
+\]
+where
+\[
+R_n (x) = \frac{f^{(n + 1)} (c)}{(n + 1)!} (x - x_0)^{n + 1}.
+\]
+
+\pagebreak
+
+\textbf{Chapter 6: Sequences of Functions - Definitions}
+
+\hrulefill
+
+TODO
+
+\pagebreak
+
+\textbf{Chapter 6: Sequences of Functions - Facts}
+
+\hrulefill
+
+TODO
+
+\pagebreak
+
+\textbf{Chapter 7: Integration - Definitions}
+
+\hrulefill
+
+TODO
+
+\pagebreak
+
+\textbf{Chapter 7: Integration - Facts}
+
+\hrulefill
+
+TODO
 
 \pagebreak
 
