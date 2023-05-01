@@ -741,7 +741,7 @@ TODO
 
 \pagebreak
 
-\textbf{Appendix: Theorems to Memorize}
+\textbf{Appendix A: Theorems to Memorize}
 
 \hrulefill
 
@@ -780,48 +780,6 @@ Since $\alpha$ is the least upper bound for $A$ and for every $n \in \NN, b_n$ i
 Thus, for every $n \in \NN, a_n \le \alpha \le b_n$, and so $\alpha \in I_n$ and $\alpha \in \bigcap_{n = 1}^{\infty} I_n$.
 
 Therefore, $\bigcap_{n = 1}^{\infty} I_n \ne \emptyset$.
-\end{proof}
-
-\pagebreak
-
-\underline{Archimedean Property (ArP)}
-
-For every $x \in \RR$, there exists $n \in \NN$ such that $n > x$.
-
-\dotfill
-
-High-Level Overview of the Proof:
-
-\begin{enumerate}
-\item By contradiction, assume the negation of the statement and argue that $x$ is an upper bound for $\NN$, and so by the AoC, a sup exists for $\NN$.
-
-\item Show that there exists an element in $\NN$ that is greater than the sup (using the sup lemma with $\eps = 1$), which is a contradiction.
-\end{enumerate}
-
-\dotfill
-
-\begin{proof}
-$ $
-
-By contradiction.
-
-Suppose there exists $x \in \RR$ such that for every $n \in \NN, n \le x$.
-
-Then $x$ is an upper bound for $\NN$.
-
-Clearly, $\NN \ne \emptyset$.
-
-By the AoC, $\alpha = \sup \NN$ exists.
-
-- - - - - - - - - -
-
-Then there exists $n \in \NN$ such that $\alpha - 1 < n$.
-
-Then $\alpha < n + 1$.
-
-Since $n \in \NN, n + 1 \in \NN$.
-
-This contradicts the fact that $\alpha$ is an upper bound for $\NN$.
 \end{proof}
 
 \pagebreak
@@ -1077,7 +1035,7 @@ Suppose for every $n \in \NN$, there exists $x_n \in [a, b]$ such that $\abs{f(x
 
 - - - - - - - - - -
 
-By BW version 2, $(x_n)$ contains a convergent subsequence $(x_{n_k})$ such that $x = lim x_{n_k} \in [a, b]$.
+By BW version 2, $(x_n)$ contains a convergent subsequence $(x_{n_k})$ such that $x = \lim x_{n_k} \in [a, b]$.
 
 Since $f$ is continuous on $[a, b], \lim f(x_{n_k}) = f(x)$.
 
@@ -1111,50 +1069,6 @@ Thus, there exists $\beta \in [a, b]$ such that $f(\beta) = M$.
 
 Therefore, for every $x \in [a, b], f(x) \le M = f(\beta)$.
 \end{enumerate}
-\end{proof}
-
-\pagebreak
-
-\underline{Theorem on continuous functions on a closed interval being uniformly continuous}
-
-Let $f : [a, b] \rightarrow \RR$ be continuous. Then $f$ is uniformly continuous on $[a, b]$.
-
-\dotfill
-
-High-Level Overview of the Proof:
-
-\begin{enumerate}
-\item By contradiction, suppose $f$ is not uniformly continuous on $[a, b]$, and use the theorem for a function failing to be uniformly continuous.
-
-\item Use BW version 2 and the triangle inequality to show that a subsequence of one of the above sequences converges to the same value as a subsequence of the other.
-
-\item Use the definition of continuity and the triangle inequality to show that the absolute value of the difference of function output values between the two subsequences converges to zero, contradicting the assumption that they should converge to a positive real number.
-\end{enumerate}
-
-\dotfill
-
-\begin{proof}
-$ $
-
-By contradiction.
-
-Suppose there exist $\eps_0 > 0$ and $(x_n), (y_n)$ contained in $[a, b]$ such that
-\\
-$\lim \abs{x_n - y_n} = 0$, but $\abs{f(x_n) - f(y_n)} \ge \eps_0$ for every $n \in \NN$. $(\ast)$
-
-- - - - - - - - - -
-
-By BW version 2, there exists a subsequence $(x_{n_k})$ of $(x_n)$ that converges and such that $x = \lim x_{n_k} \in [a, b]$.
-
-We have $\abs{y_{n_k} - x} \le \abs{y_{n_k} - x_{n_k}} + \abs{x_{n_k} - x} \rightarrow 0$.
-
-Thus, $\lim y_{n_k} = x$.
-
-- - - - - - - - - -
-
-Since $f$ is continuous on $[a, b], \lim f(x_{n_k}) = f(x) = \lim f(y_{n_k})$, and so
-\\
-$\abs{f(x_{n_k}) - f(y_{n_k})} \le \abs{f(x_{n_k}) - f(x)} + \abs{f(y_{n_k}) - f(x)} \rightarrow 0$, contradicting $(\ast)$.
 \end{proof}
 
 \pagebreak
@@ -1220,5 +1134,320 @@ Therefore, $f(c) = 0$ and $c \in (a, b)$.
 \end{proof}
 
 \pagebreak
+
+\underline{The Chain Rule}
+
+Let $f : A \rightarrow B, g : B \rightarrow \RR$ satisfy $f(A) \subseteq B$. If $f$ is differentiable at $c \in A$ and $g$ is differentiable at $f(c) \in B$, then $g \circ f$ is differentiable at $c$ and
+\[
+(g \circ f)'(c) = g'(f(c)) f'(c)
+\]
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+TODO
+
+\dotfill
+
+\begin{proof}
+$ $
+
+Let $d : B \rightarrow \RR$ be defined as follows:
+\[
+d(y) =
+\begin{cases}
+	\frac{g(y) - g(f(c))}{y - f(c)} & \text{if }y \ne f(c) \\
+	g'(f(c)) & \text{if }y = f(c)
+\end{cases}
+\]
+
+Then $\lim_{y \rightarrow f(c)} d(y) = g'(f(c))$, so $d$ is continuous at $f(c)$.
+
+Then we have $(\ast)$ $d(y) (y - f(c)) = g(y) - g(f(c))$ holds for every $y \in B$ (including $y = f(c)$).
+
+Then for $t \in A$ with $y = f(t)$, $(\ast)$ becomes
+\\
+$d(f(t)) (f(t) - f(c)) = g(f(t)) - g(f(c))$.
+
+Thus, if $t \ne c, \frac{g(f(t)) - g(f(c))}{t - c} = d(f(t)) \cdot \frac{f(t) - f(c)}{t - c}$.
+
+Since $f$ is differentiable at $c$, it is continuous at $c$, and $d(y)$ is continuous at $f(c)$.
+
+Thus, $(d \circ f)$ is continuous at $c$.
+
+As a result, $\lim_{t \rightarrow c} d(f(t)) = d(f(c)) = g'(f(c))$.
+
+Therefore, $(g \circ f)'(c) = \lim_{t \rightarrow c} \frac{g(f(t)) - g(f(c))}{t - c} = g'(f(c)) f'(c)$.
+\end{proof}
+
+\pagebreak
+
+\underline{Rolle's Theorem}
+
+Let $f : [a, b] \rightarrow \RR$ be continuous on $[a, b]$ and differentiable on $(a, b)$. If $f(a) = f(b)$, then there exists $c \in (a, b)$ such that $f'(c) = 0$.
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+TODO
+
+\dotfill
+
+\begin{proof}
+$ $
+
+Since $f : [a, b] \rightarrow \RR$ is continuous, by the EVT, the max and min of $f$ are attained on $[a, b]$.
+
+\begin{enumerate}
+\item
+If both the max and min of $f$ are at $a$ and $b$, then
+\\
+$\text{max of }f = f(a) = f(b) = \text{min of }f$.
+
+Then $f$ is necessarily constant.
+
+Thus, $f'(c) = 0$ for every $c \in (a, b)$.
+
+\item
+Otherwise, by the IET, there exists $c \in (a, b)$ such that $f'(c) = 0$.
+\end{enumerate}
+
+Therefore, there exists $c \in (a, b)$ such that $f'(c) = 0$.
+\end{proof}
+
+\pagebreak
+
+\underline{Mean Value Theorem}
+
+If $f : [a, b] \rightarrow \RR$ is continuous on $[a, b]$ and differentiable on $(a, b)$, then there exists $c \in (a, b)$ such that
+\[
+f'(c) = \frac{f(b) - f(a)}{b - a}
+\]
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+TODO
+
+\dotfill
+
+\begin{proof}
+$ $
+
+Let $d(x) = f(x) - \parens{\frac{f(b) - f(a)}{b - a} (x - a) + f(a)}$.
+
+Then $d$ is continuous on $[a, b]$ and differentiable on $(a, b)$.
+
+In addition, $d(a) = 0 = d(b)$, and $d'(x) = f'(x) - \frac{f(b) - f(a)}{b - a}$.
+
+By Rolle's Theorem, there exists $c \in (a, b)$ such that $d'(c) = 0$, and so
+\\
+$0 = d'(c) = f'(c) - \frac{f(b) - f(a)}{b - a}$.
+
+Therefore, $f'(c) = \frac{f(b) - f(a)}{b - a}$.
+\end{proof}
+
+\pagebreak
+
+\underline{Continuous Limit Theorem}
+
+Let $(f_n)$ be a sequence of functions $f_n : A \rightarrow \RR$ that converge uniformly
+\\
+on $A$ to $f$. If each $f_n$ is continuous at $c \in A$, then so is $f$.
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+TODO
+
+\dotfill
+
+\begin{proof}
+$ $
+
+Let $\eps > 0$.
+
+Since $(f_n)$ converges uniformly on $A$ to $f$, there exists $n_0 \in \NN$ such that for every $n \ge n_0$ and $x \in A, \abs{f_n(x) - f(x)} < \frac{\eps}{3}$.
+
+Since $f_{n_0}$ is continuous at $c$, there exists $\delta > 0$ such that if $\abs{x - c} < \delta$, then $\abs{f_{n_0}(x) - f_{n_0}(c)} < \frac{\eps}{3}$.
+
+Then if $\abs{x - c} < \delta$, then
+\\
+$\abs{f(x) - f(c)} \le \abs{f(x) - f_{n_0}(x)} + \abs{f_{n_0}(x) - f_{n_0}(c)} + \abs{f_{n_0}(c) - f(c)}
+\\
+< \frac{\eps}{3} + \frac{\eps}{3} + \frac{\eps}{3} = \eps$.
+
+Therefore, $f$ is continuous at $c$.
+\end{proof}
+
+\pagebreak
+
+\underline{Integrable Limit Theorem}
+
+Assume $f_n \rightarrow f$ uniformly on $[a, b]$ and each $f_n$ is integrable. Then $f$ is integrable and $\lim \int_{a}^{b} f_n = \int_{a}^{b} f$.
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+TODO
+
+\dotfill
+
+\begin{proof}
+$ $
+
+Let $\eps > 0$ be arbitrary.
+
+Since $(f_n)$ converges uniformly to $f$ on $[a, b]$, there exists $n_0 \in \NN$ such that for every $n \ge n_0$ and $x \in [a, b], \abs{f_n(x) - f(x)} < \frac{\eps}{3(b - a)}$.
+
+Then $-\frac{\eps}{3(b - a)} < f(x) - f_n(x) < \frac{\eps}{3(b - a)}$.
+
+$f_{n_0}$ is integrable on $[a, b]$, and so there exists a partition $P_0$ of $[a, b]$ such that $U(f_{n_0}, P_0) - L(f_{n_0}, P_0) < \frac{\eps}{3}$.
+
+We have $U(f + g, P) \le U(f, P) + U(g, P)$ and $L(f + g, P) \ge L(f, P) + L(g, P)$.
+
+Then $U(f, P_0) - L(f, P_0) = U(f - f_{n_0} + f_{n_0}, P_0) - L(f - f_{n_0} + f_{n_0}, P_0)
+\\
+\le U(f - f_{n_0}, P_0) + (U(f_{n_0}, P_0) - L(f_{n_0}, P_0)) - L(f - f_{n_0}, P_0)$.
+
+We have $U(f - f_{n_0}, P_0) \le \frac{\eps}{3(b - a)} (b - a) = \frac{\eps}{3}$ and $L(f - f_{n_0}, P_0) \ge -\frac{\eps}{3(b - a)} (b - a) = -\frac{\eps}{3}$.
+
+Therefore, $U(f, P_0) - L(f, P_0) < \frac{\eps}{3} + \frac{\eps}{3} + \frac{\eps}{3} = \eps$.
+
+For $n \ge n_0, \abs{\int_a^b f_n - \int_a^b f} = \abs{\int_a^b (f_n - f)} \le \int_a^b \abs{f_n - f} \le \frac{\eps}{3(b - a)} (b - a) < \eps$.
+\end{proof}
+
+\pagebreak
+
+\underline{The Fundamental Theorem of Calculus (Part 1)}
+
+If $f : [a, b] \rightarrow \RR$ is integrable and $F : [a, b] \rightarrow \RR$ satisfies $F'(x) = f(x)$ for every $x \in [a, b]$, then $\int_a^b f(x) dx = F(b) - F(a)$.
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+TODO
+
+\dotfill
+
+\begin{proof}
+$ $
+
+Since $F$ is differentiable on $[a, b]$, it is also continuous on $[a, b]$.
+
+Let $P = \set{x_0, x_1, \dots, x_n}$ be a partition of $[a, b]$.
+
+For every $k = 1, \dots, n$, by the MVT, there exists $t_k \in [x_{k - 1}, x_k]$ such that
+\\
+$F'(t_k) = \frac{F(x_k) - F(x_{k - 1})}{x_k - x_{k - 1}}$.
+
+Then $f(t_k) = \frac{F(x_k) - F(x_{k - 1})}{x_k - x_{k - 1}}$, and so $F(x_k) - F(x_{k - 1}) = f(t_k) \Delta x_k$.
+
+Then $m_k \le f(t_k) \le M_k$.
+
+Therefore, $\sum_{k = 1}^n (F(x_k) - F(x_{k - 1})) = \sum_{k = 1}^n f(t_k) \Delta x_k \le \sum_{k = 1}^n M_k \Delta x_k = U(f, P)$ and $\sum_{k = 1}^n (F(x_k) - F(x_{k - 1})) \ge \sum_{k = 1}^n m_k \Delta x_k = L(f, P)$.
+
+However, $\sum_{k = 1}^n (F(x_k) - F(x_{k - 1})) = F(x_n) - F(x_0) = F(b) - F(a)$.
+
+Thus, $L(f, P) \le F(b) - F(a) \le U(f, P)$, and so $L(f) \le F(b) - F(a) \le U(f)$.
+
+Since $f$ is integrable on $[a, b], L(f) = U(f)$, and so $F(b) - F(a) = L(f) = \int_a^b f$.
+\end{proof}
+
+\pagebreak
+
+\textbf{Appendix B: Theorems no longer needed for the final}
+
+\hrulefill
+
+\underline{Archimedean Property (ArP)}
+
+For every $x \in \RR$, there exists $n \in \NN$ such that $n > x$.
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+\begin{enumerate}
+\item By contradiction, assume the negation of the statement and argue that $x$ is an upper bound for $\NN$, and so by the AoC, a sup exists for $\NN$.
+
+\item Show that there exists an element in $\NN$ that is greater than the sup (using the sup lemma with $\eps = 1$), which is a contradiction.
+\end{enumerate}
+
+\dotfill
+
+\begin{proof}
+$ $
+
+By contradiction.
+
+Suppose there exists $x \in \RR$ such that for every $n \in \NN, n \le x$.
+
+Then $x$ is an upper bound for $\NN$.
+
+Clearly, $\NN \ne \emptyset$.
+
+By the AoC, $\alpha = \sup \NN$ exists.
+
+- - - - - - - - - -
+
+Then there exists $n \in \NN$ such that $\alpha - 1 < n$.
+
+Then $\alpha < n + 1$.
+
+Since $n \in \NN, n + 1 \in \NN$.
+
+This contradicts the fact that $\alpha$ is an upper bound for $\NN$.
+\end{proof}
+
+\pagebreak
+
+\underline{Theorem on continuous functions on a closed interval being uniformly continuous}
+
+Let $f : [a, b] \rightarrow \RR$ be continuous. Then $f$ is uniformly continuous on $[a, b]$.
+
+\dotfill
+
+High-Level Overview of the Proof:
+
+\begin{enumerate}
+\item By contradiction, suppose $f$ is not uniformly continuous on $[a, b]$, and use the theorem for a function failing to be uniformly continuous.
+
+\item Use BW version 2 and the triangle inequality to show that a subsequence of one of the above sequences converges to the same value as a subsequence of the other.
+
+\item Use the definition of continuity and the triangle inequality to show that the absolute value of the difference of function output values between the two subsequences converges to zero, contradicting the assumption that they should converge to a positive real number.
+\end{enumerate}
+
+\dotfill
+
+\begin{proof}
+$ $
+
+By contradiction.
+
+Suppose there exist $\eps_0 > 0$ and $(x_n), (y_n)$ contained in $[a, b]$ such that
+\\
+$\lim \abs{x_n - y_n} = 0$, but $\abs{f(x_n) - f(y_n)} \ge \eps_0$ for every $n \in \NN$. $(\ast)$
+
+- - - - - - - - - -
+
+By BW version 2, there exists a subsequence $(x_{n_k})$ of $(x_n)$ that converges and such that $x = \lim x_{n_k} \in [a, b]$.
+
+We have $\abs{y_{n_k} - x} \le \abs{y_{n_k} - x_{n_k}} + \abs{x_{n_k} - x} \rightarrow 0$.
+
+Thus, $\lim y_{n_k} = x$.
+
+- - - - - - - - - -
+
+Since $f$ is continuous on $[a, b], \lim f(x_{n_k}) = f(x) = \lim f(y_{n_k})$, and so
+\\
+$\abs{f(x_{n_k}) - f(y_{n_k})} \le \abs{f(x_{n_k}) - f(x)} + \abs{f(y_{n_k}) - f(x)} \rightarrow 0$, contradicting $(\ast)$.
+\end{proof}
 
 \end{document}
